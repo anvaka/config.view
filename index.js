@@ -7,7 +7,9 @@
  */
 module.exports = addGlobalViewSettings;
 
-function addGlobalViewSettings(renderer, gui) {
+function addGlobalViewSettings(settings) {
+  var gui = settings.gui();
+  var renderer = settings.renderer();
   var folder = gui.addFolder('View Settings');
 
   var model = {
