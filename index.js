@@ -14,6 +14,7 @@ function addGlobalViewSettings(settings) {
 
   var model = {
     nodeColor: [0xff, 0xff, 0xff],
+    backgroundColor: [0x00, 0x00, 0x00],
     linkStartColor: [0x33, 0x33, 0x33],
     linkEndColor: [0x33, 0x33, 0x33],
     nodeSize: 15,
@@ -22,6 +23,7 @@ function addGlobalViewSettings(settings) {
 
   var stableController = folder.add(model, 'stable').name('Pause Layout');
   folder.addColor(model, 'nodeColor').onChange(setNodeColor);
+  if (renderer.clearColor) folder.addColor(model, 'backgroundColor').onChange(setBackgroundColor);
   folder.add(model, 'nodeSize', 0, 200).onChange(setNodeSize);
   folder.addColor(model, 'linkStartColor').onChange(setLinkColor);
   folder.addColor(model, 'linkEndColor').onChange(setLinkColor);
@@ -49,6 +51,10 @@ function addGlobalViewSettings(settings) {
     function setCustomNodeColor(node) {
       renderer.nodeColor(node.id, model.nodeColor);
     }
+  }
+
+  function setBackgroundColor(color) {
+    renderer.clearColor(color);
   }
 
   function setNodeSize() {
