@@ -13,10 +13,10 @@ function addGlobalViewSettings(settings) {
   var folder = gui.addFolder('View Settings');
 
   var model = {
-    nodeColor: [0xff, 0xff, 0xff],
-    backgroundColor: [0x00, 0x00, 0x00],
-    linkStartColor: [0x33, 0x33, 0x33],
-    linkEndColor: [0x33, 0x33, 0x33],
+    nodeColor: 0xffffff,
+    backgroundColor: 0x000000,
+    linkStartColor: 0x333333,
+    linkEndColor: 0x333333,
     nodeSize: 15,
     stable: changeStable
   };
@@ -44,12 +44,11 @@ function addGlobalViewSettings(settings) {
   }
 
   function setNodeColor() {
-    var graph = renderer.graph();
-    graph.forEachNode(setCustomNodeColor);
+    renderer.forEachNode(setCustomNodeColor);
     renderer.focus();
 
-    function setCustomNodeColor(node) {
-      renderer.nodeColor(node.id, model.nodeColor);
+    function setCustomNodeColor(ui) {
+      ui.color = model.nodeColor;
     }
   }
 
@@ -58,22 +57,21 @@ function addGlobalViewSettings(settings) {
   }
 
   function setNodeSize() {
-    var graph = renderer.graph();
-    graph.forEachNode(setCustomNodeSize);
+    renderer.forEachNode(setCustomNodeSize);
     renderer.focus();
 
-    function setCustomNodeSize(node) {
-      renderer.nodeSize(node.id, model.nodeSize);
+    function setCustomNodeSize(ui) {
+      ui.size = model.nodeSize;
     }
   }
 
   function setLinkColor() {
-    var graph = renderer.graph();
-    graph.forEachLink(setCustomLinkUI);
+    renderer.forEachLink(setCustomLinkUI);
     renderer.focus();
   }
 
-  function setCustomLinkUI(link) {
-    renderer.linkColor(link.id, model.linkStartColor, model.linkEndColor);
+  function setCustomLinkUI(ui) {
+    ui.fromColor = model.linkStartColor;
+    ui.toColor = model.linkEndColor;
   }
 }

@@ -12,6 +12,9 @@
     "config",
     "dat"
   ],
+  "peerDependencies": {
+    "ngraph.pixel": "2.x"
+  },
   "author": "Andrei Kashcha",
   "license": "MIT",
   "repository": {
